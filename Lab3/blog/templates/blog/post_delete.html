@@ -1,0 +1,25 @@
+
+{% extends 'blog/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <div id="postlist">
+                    <a href="{% url 'post_list' %}"><button type="button" class="btn btn-blog btn-arrow-left">WRÓĆ</button></a>
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <h3 class="pull-left">Usunięto post</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

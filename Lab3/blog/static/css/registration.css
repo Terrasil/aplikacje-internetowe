@@ -1,0 +1,69 @@
+Html, body{
+  height:100%;
+  background-color: rgb(222, 222, 222);
+}
+
+.grandParentContaniner{
+  display:table; 
+  height:100%; 
+  margin: 0 auto;
+}
+
+.parentContainer{
+  display:table-cell; 
+  vertical-align:middle;
+}	
+
+.formularz{
+  padding: 1rem;
+  background-color: white !important;
+}
+
+.form-footer{
+  display: block !important;
+  background-color: #428bca !important;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-bottom: -2rem;
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.form-header{
+  display: block !important;
+  background-color: #428bca !important;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: -2rem;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+
+.google{
+  color: gray !important;
+  background-color: white !important;
+  border-color: silver !important;
+}
+.google:hover {
+  color: white !important;
+  background-color: #dd4b39 !important;
+  border-color: #ff0000 !important;
+}
+.discord{
+  color: gray !important;
+  background-color: white !important;
+  border-color: silver !important;
+}
+.discord:hover {
+  color: white !important;
+  background-color: #7186d6 !important;
+  border-color: #576ebc !important;
+}
+.clear-link {
+  text-decoration: none !important;
+}
