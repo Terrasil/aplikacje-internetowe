@@ -2,7 +2,7 @@
 
 ### Autor: Patryk Morawski, 185ic_b1
 
-## Laboratorium 2
+## Laboratorium 3
 Repozytorium zawiera wynik (program) z Laboratorium 3. Celem było dodanie nowych sposobów logowania. 
 Konkretnie poprzez autoryzację z serwisów zewnętrznych. 
 Ja wykorzystałem najczęściej przezemnie używane czyli Google i Discord.
