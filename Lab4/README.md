@@ -7,7 +7,7 @@ Repozytorium zawiera wynik (program) z Laboratorium 4. Celem było zapoznanie si
 
 DRF (Django REST framework) jest dużym udogodnieniem gdyż skraca czas tworzenia aplikacji oraz zmniejsza ilość linii kodu.
 
-## APIv1 - Blog - Posty
+## APIv1 - Post - Posty
 
 #### Dodanie nowego postu APIv1 jako Administrator
 ![Dodanie nowego postu APIv1](https://i.imgur.com/tUjlosN.png)
@@ -68,5 +68,5 @@ Filtrowanie i sortowanie odbywa się po parametrze 'title'
 
 #### Podgląd Swagger'a
 ![Podgląd Swagger'a](https://i.imgur.com/igDaLT1.png)
-#### Podgląd metody POST dla APIv1
+#### Podgląd modelu POST 'v1_create' dla APIv1
 ![Podgląd metody POST dla APIv1](https://i.imgur.com/MJOHReU.png)
