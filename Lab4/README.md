@@ -39,14 +39,23 @@ DRF (Django REST framework) jest dużym udogodnieniem gdyż skraca czas tworzeni
 
 #### Dodatkowo - Filtry
 Pakiet **django-filters**
+
 Aby skorzystać z tego pakietu należy wykonać poniższe kroki:
+
 - W **views.py** należy dodać:
+
     filter_backends = [filters.SearchFilter, filters.OrderingFilter] 
+    
     search_fields = ['title'], 
+    
     ordering_fields = ['title'] 
+    
 - W **settings.py**  należy dodać:
+
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend',]
+    
 Filtrowanie i sortowanie odbywa się po parametrze 'title'
+
 ![Filtrowanie po tytule](https://i.imgur.com/OMeXbwo.png)
 
 ## Redock
