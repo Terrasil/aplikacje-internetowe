@@ -4,6 +4,7 @@
 
 ## Laboratorium 4
 Repozytorium zawiera wynik (program) z Laboratorium 4. Celem było zapoznanie się z mechanizmem DRF (tutaj dwa API, Redoc'iem i Swagger'em). 
+
 DRF (Django REST framework) jest dużym udogodnieniem gdyż skraca czas tworzenia aplikacji oraz zmniejsza ilość linii kodu.
 
 ## APIv1 - Blog - Posty
@@ -60,8 +61,8 @@ Filtrowanie i sortowanie odbywa się po parametrze 'title'
 
 ## Redock
 
-#### Podgląd Redock'a
-![Podgląd Redock'a](https://i.imgur.com/fSOoKdK.png)
+#### Podgląd Redoc'a
+![Podgląd Redoc'a](https://i.imgur.com/fSOoKdK.png)
 
 ## Swagger
 
