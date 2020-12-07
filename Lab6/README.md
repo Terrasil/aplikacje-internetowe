@@ -2,4 +2,4 @@
 
 ### Autor: Patryk Morawski, 185ic_b1
 
-## Laboratorium 5
+## Laboratorium 6
