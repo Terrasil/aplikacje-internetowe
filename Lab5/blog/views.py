@@ -87,7 +87,7 @@ def zajecia(request):
             "image": image
         })
 
-    return render(request,'home.html',{'pierwszy':pierwszy, 'trzeci':trzeci, 'ostatni':ostatni, 'top_items':top_items, 'image_data':image_data, 'all_products':all_products})
+    return render(request,'blog/zajecia.html',{'pierwszy':pierwszy, 'trzeci':trzeci, 'ostatni':ostatni, 'top_items':top_items, 'image_data':image_data, 'all_products':all_products})
     
 #
 

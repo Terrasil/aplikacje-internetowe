@@ -7,5 +7,6 @@ urlpatterns = [
     path('delete/<int:pk>/', views.post_delete, name='post_delete'),
     path('singup/', views.singup, name='singup'),
     path('webscrap/', views.webscrap, name='webscrap'),
-    path('xpath/', views.xpath, name='xpath')
+    path('xpath/', views.xpath, name='xpath'),
+    path('zajecia/', views.zajecia, name='zajecia')
 ]
