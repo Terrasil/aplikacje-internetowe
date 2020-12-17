@@ -146,8 +146,8 @@ def xpath(request):
     lxml1 = tree[0].text_content()
     
     # Szukanie elemntu przez nazwę klasy   
-    url = 'https://codedamn-classrooms.github.io/webscraper-python-codedamn-classroom-website/'    
-    path = '//*[@class="jumbotron"]'    
+    url = 'https://godotengine.org/'    
+    path = '//*[@class="padded"]'    
     response = requests.get(url)    
     source = html.fromstring(response.content)    
     tree = source.xpath(path)
