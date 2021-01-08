@@ -1,0 +1,63 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div id="postlist">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h3 class="pull-left">Analiza zajęć</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="panel-body text-justify">
+                        <div class="card-body">
+                            <h3>Przykład 1</h3>
+                            <li class="list-group-item">
+                                Pierwszy element span: <b>{{pierwszy}}</b><br>
+                                Trzeci element span: <b>{{trzeci}}</b><br>
+                                Ostatni element span: <b>{{ostatni}}</b>
+                            </li>
+                        </div>
+                        <div class="card-body">
+                            <h3>Przykład 2</h3>
+                                {% for top in top_items %}
+                                <li class="list-group-item">
+                                    Nazwa: <b>{{top.title}}</b><br>
+                                    Opinia: <b>{{top.review}}</b><br>
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="card-body">
+                            <h3>Przykład 3</h3>
+                            {% for id in image_data %}
+                                <li class="list-group-item">
+                                    Źródło: <b>{{id.src}}</b><br>
+                                    Alt: <b>{{id.alt}}</b><br>
+                                </li>
+                            {% endfor %}
+                        </div>
+                        <div class="card-body">
+                            <h3>Przykład 4</h3>
+                            {% for ap in all_products %}
+                                <li class="list-group-item">
+                                    Nazwa: <b>{{ap.name}}</b><br>
+                                    Opis: <b>{{ap.description}}</b><br>
+                                    Cena: <b>{{ap.price}}</b><br>
+                                    Opinie: <b>{{ap.reviews}}</b><br>
+                                    Obraz: <b>{{ap.image}}</b>
+                                </li>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

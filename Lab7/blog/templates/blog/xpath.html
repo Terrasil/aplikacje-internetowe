@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div id="postlist">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h3 class="pull-left">Element pobrany przy pomocy xPath</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="panel-body text-justify">
+                        <div class="card-body">
+                            <h4>Pobrany element: </h4>
+                            <p>
+                                {{lxml1}} 
+                            </p>                     
+                        </div>
+                    </div>
+                </div> 
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h3 class="pull-left">Element pobrany przy pomocy klasy</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="panel-body text-justify">
+                        <div class="card-body">
+                            <h4>Pobrany element z <i>godotengine.org</i> : </h4>
+                            <h5>›› <i>class="padded"</i></h5>
+                            <p>
+                                {{lxml2}} 
+                            </p>                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
