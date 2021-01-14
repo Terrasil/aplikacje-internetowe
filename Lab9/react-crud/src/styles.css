@@ -1,0 +1,304 @@
+@font-face{
+    font-family: titleFont;
+    src: url(./fonts/Atmospheric.ttf);
+}
+.show{
+    padding: 2rem;
+    max-height: 24rem;
+    min-height: 24rem;
+}
+.row{
+    margin: 0;
+}
+.login-panel{
+    margin: -1rem;
+    margin-top: -2rem;
+}
+.sep{
+    min-height:100vh;
+}
+.wyszukiwarka{
+    width: 100%;
+}
+/* Jasny motyw */
+
+.light-theme .formTitle{
+    color: black !important;
+}
+.light-theme .bg{
+    display: block;
+    background-color: white;
+    min-height: 86vh !important;
+    padding-top: 1rem;
+    margin-top: -0.5rem;
+    margin-bottom: -3rem;
+}
+.light-theme .sep{
+    background-color: white;
+    text-align: right;
+    padding: 1rem;
+}
+.light-theme header{
+    background-color: rgb(130, 56, 167) !important;
+    min-height: 14vh !important;
+}
+.light-theme header img{
+    max-height: 14vh !important;
+    margin: 1rem !important;
+    margin-left: 3rem !important;
+}
+.light-theme header .name{
+    margin: 1rem !important;
+    margin-left: 2rem !important;
+    padding: 1.5rem;
+    font-family: titleFont;
+    color: white;
+}
+.light-theme h2{
+    color: gray;
+}
+.light-theme .element{
+    color: black;
+    background-color: rgb(234, 234, 234);
+    max-height: 24rem;
+    min-height: 24rem;
+    text-align: left;
+}
+.light-theme footer {
+    padding-top: 20px;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    min-height: 100px;
+    height: 10wh;
+    background-color: rgb(130, 56, 167) !important;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.light-theme .menu{
+    margin: -1rem;
+    margin-bottom: 2rem;
+}
+.light-theme .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.light-theme .menu li {
+    float: left;
+}
+.light-theme .menu li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.light-theme .menu li a:hover {
+    background-color: rgb(130, 56, 167) !important;
+    color: white;
+}
+.light-theme #theme{
+    padding: 0.45rem;
+    float: right;
+}
+.light-theme .MuiInput-root{
+    color: rgb(32,32,32) !important;
+}
+.light-theme .MuiInput-underline::before{
+    border-color: gray !important;
+}
+.light-theme .MuiInput-underline::after{
+    border-bottom: 2px solid rgb(130, 56, 167) !important;
+}
+.light-theme .Mui-focused::after{
+    border-bottom: 2px solid rgb(130, 56, 167) !important;
+}
+.light-theme [data-shrink="true"]{
+    color: rgb(130, 56, 167) !important;
+}
+.light-theme [data-shrink="false"]{
+    color: gray !important;
+}
+.light-theme .MuiPaper-root .MuiCardContent-root{
+    color: black;
+    background-color: rgb(234, 234, 234);
+}
+.light-theme .MuiPaper-root {
+    color: black;
+    background-color: rgb(234, 234, 234);
+    border-radius: 0.5rem;
+}
+.light-theme .card{
+    margin-bottom:12.5%;
+    background-color: rgb(234, 234, 234);
+}
+.light-theme .form-control{
+    color: black;
+    background-color: rgb(234, 234, 234);
+}
+.light-theme .form-group label{
+    color: black;
+}
+.light-theme .form-group input[type=file]{
+    color: black;
+}
+
+
+/* Ciemny motyw */
+
+.dark-theme .formTitle{
+    color: white !important;
+}
+.dark-theme .bg{
+    display: block;
+    background-color: rgb(32,32,32);
+    min-height: 86vh !important;
+    padding-top: 1rem;
+    margin-top: -0.5rem;
+    margin-bottom: -3rem;
+}
+.dark-theme .sep{
+    background-color: rgb(32,32,32);
+    text-align: right;
+    padding: 1rem;
+}
+.dark-theme header{
+    background-color: rgb(170, 0, 255) !important;
+    min-height: 14vh !important;
+}
+.dark-theme header img{
+    max-height: 14vh !important;
+    margin: 1rem !important;
+    margin-left: 3rem !important;
+}
+.dark-theme header .name{
+    margin: 1rem !important;
+    margin-left: 2rem !important;
+    padding: 1.5rem;
+    font-family: titleFont;
+    color: rgb(32,32,32);
+}
+.dark-theme h2{
+    color: gray;
+}
+.dark-theme .element{
+    color: white;
+    background-color: rgb(24, 24, 24);
+    max-height: 24rem;
+    min-height: 24rem;
+    text-align: left;
+}
+.dark-theme footer {
+    padding-top: 20px;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    min-height: 100px;
+    height: 10wh;
+    background-color: rgb(170, 0, 255) !important;
+    color: rgb(32,32,32);
+    text-align: center;
+    font-weight: bold;
+}
+.dark-theme .menu{
+    margin: -1rem;
+    margin-bottom: 2rem;
+}
+.dark-theme .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.dark-theme .menu li {
+    float: left;
+}
+.dark-theme .menu li a {
+    display: block;
+    color: #999;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.dark-theme .menu li a:hover {
+    background-color: rgb(170, 0, 255) !important;
+    color: rgb(32,32,32);
+}
+.dark-theme #theme{
+    padding: 0.45rem;
+    float: right;
+}
+.dark-theme .MuiInput-root{
+    color: silver !important;
+}
+.dark-theme .MuiInput-underline::before{
+    border-color: gray !important;
+}
+.dark-theme .MuiInput-underline::after{
+    border-bottom: 2px solid rgb(170, 0, 255) !important;
+}
+.dark-theme .Mui-focused::after{
+    border-bottom: 2px solid rgb(170, 0, 255) !important;
+}
+.dark-theme [data-shrink="true"]{
+    color: rgb(170, 0, 255) !important;
+}
+.dark-theme [data-shrink="false"]{
+    color: gray !important;
+}
+.dark-theme .MuiButton-contained{
+    background-color:rgb(16,16,16);
+    color: gray !important;
+}
+.dark-theme .MuiButton-contained:hover{
+    background-color:rgb(24,24,24);
+    color: gray !important;
+}
+.dark-theme .MuiPaper-root .MuiCardContent-root{
+    color: white;
+    background-color: rgb(24, 24, 24) !important;
+}
+.dark-theme .MuiPaper-root {
+    color: white;
+    background-color: rgb(24, 24, 24) !important;
+    border-radius: 0.5rem;
+}
+.dark-theme .card{
+    margin-bottom:12.5%;
+    color: white;
+    background-color: rgb(24, 24, 24) !important;
+}
+.dark-theme .form-control{
+    color: white;
+    background-color: rgb(24, 24, 24) !important;
+    border-color: rgb(48,48,48) !important;
+}
+.dark-theme .form-group label{
+    color: white;
+}
+.dark-theme .form-group input[type="file"]{
+    color: white;
+    background-color: rgb(24, 24, 24) !important;
+    border-color: rgb(48,48,48) !important;
+}
+
+
+
+
+
+::-webkit-scrollbar{
+    width: 16px;
+}
+::-webkit-scrollbar-track {
+    background: rgb(12, 12, 12);
+}
+::-webkit-scrollbar-thumb {
+    background: white; 
+}
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+}
+::-webkit-scrollbar-thumb:active {
+    background: rgb(64, 64, 64); 
+}
