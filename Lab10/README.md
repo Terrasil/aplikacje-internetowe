@@ -409,8 +409,7 @@ class Lista extends Component {
               {this.renderTabList()}
               </Card.Header>
             </Card>
-            
-					  <Accordion>
+            <Accordion>
               {this.renderItems()}
             </Accordion>
           </div>
