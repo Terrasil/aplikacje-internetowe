@@ -8,6 +8,8 @@
 
 #### Kod aplikacji 'chat'
 
+z wykorzystaniem ***django-channels***
+
 ```py
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels', # <- wymagane do funkcjonowania
     'chat', # <- dodanie aplikacji do projektu
 ]
 
@@ -156,7 +159,13 @@ def room(request, room_name):
 ```
 
 #### Podgląd działania aplikacji 'chat'
+
+strona głowna
+
 ![chat1](https://i.imgur.com/tpKCsRE.png)
+
+pokój
+
 ![chat2](https://i.imgur.com/Q2QqdcU.png)
 
 ### Praca z Web Worker’ami
@@ -171,6 +180,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'workers', # <- dodanie aplikacji do projektu
     'chat', 
 ]
@@ -224,6 +234,303 @@ def pow(request):
 ```
 
 #### Podgląd działania aplikacji 'workers'
+
+fibonacci
+
 ![workers1](https://i.imgur.com/3WUvXLm.png)
+
+potęga 2
+
 ![workers2](https://i.imgur.com/g4rFNwd.png)
+
+silnia
+
 ![workers3](https://i.imgur.com/bojc5bP.png)
+
+
+### Chat przy użyciu Socket.io
+
+#### Kod aplikacji 'chat-socket-io'
+
+Aplikacja Node.js
+
+Wymagane moduły:
+ - Express
+ - Socket.io
+
+***package.json***
+```json
+{
+    "name": "chat-socket-io",
+    "version": "1.0.0",
+    "description": "Patryk Morawski - Czat",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^3.1.0"
+    }
+}
+```
+
+***index.js*** - *głowny plik aplikacji (rozruchowy)*
+*kod z poradnika - z własnymi zmianami*
+```js
+const express = require('express');
+const app = require('express')();
+const path = require('path');
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+//dodanie plików razem ze staticami
+app.use(express.static(path.join(__dirname, '/')));
+
+
+io.on('connection', (socket) => {
+    let addedUser = false;
+  
+    // Tworznie nowego użytkownika
+    socket.on('addUser', (username) => {
+      if (addedUser) return;
+  
+      // Przypisanie podanej nazwy do secket
+      socket.username = username;
+      addedUser = true;
+      socket.emit('login');
+    });
+  
+    // Tworznie nowej wiadomości
+    socket.on('message', (data) => {
+      socket.broadcast.emit('message', {
+        username: socket.username,
+        message: data
+      });
+    });
+  
+    // Wyświetlanie inforamicji o tym czy kotś pisze
+    socket.on('typing', () => {
+      socket.broadcast.emit('typing', {
+        username: socket.username
+      });
+    });
+  
+    // Zakonczenie wyświetlania
+    socket.on('endTyping', () => {
+      socket.broadcast.emit('endTyping', {
+        username: socket.username
+      });
+    });
+  });
+  
+
+http.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+```
+
+***main.js*** - *plik jQuery odpowiedzialny za wyswietlanie chatu (client site)*
+*kod z poradnika - z własnymi zmianami*
+```js
+$(function() {
+
+  const $window = $(window);
+  const $usernameInput = $('.usernameInput'); 
+  const $messages = $('.messages');           
+  const $inputMessage = $('.inputMessage');  
+  const $loginPage = $('.login.page');        
+  const $chatPage = $('.chat.page');     
+
+  const socket = io();
+
+  let username;
+  let connected = false;
+  let typing = false;
+
+
+  // Ustawienie nazwy użytkownika
+  const setUsername = () => {
+    username = $usernameInput.val().trim();
+    console.log(username)
+    if (username) {
+      $loginPage.hide();
+      $chatPage.show();
+      $currentInput = $inputMessage.focus();
+
+      // Wysłanie informacji do servera przy pomocy socketa
+      socket.emit('addUser', username);
+    }
+  }
+
+  // Wysyłanie wiadomości
+  const sendMessage = () => {
+    let message = $inputMessage.val().trim();
+    if (message && connected) {
+      $inputMessage.val('');
+      addChatMessage({ username, message });
+      // Wysłanie informacji do servera przy pomocy socketa uruchomienie funkcji chat message
+      socket.emit('message', message);
+    }
+  }
+
+  // Wyśietlanie wiadmości
+  const addChatMessage = (data, options) => {
+    if (!options) {
+      options = {};
+    }
+    const $usernameDiv = $('<span class="username"/>')
+      .text(data.username)
+    const $messageBodyDiv = $('<span class="messageBody">')
+      .text(data.message);
+
+    const typingClass = data.typing ? 'typing' : '';
+    const $messageDiv = $('<li class="message"/>')
+      .data('username', data.username)
+      .addClass(typingClass)
+      .append($usernameDiv, $messageBodyDiv);
+
+    addMessageElement($messageDiv, options);
+  }
+
+  // Wyświetlenie wiadmoci "pisze"
+  const addChatTyping = (data) => {
+    data.typing = true;
+    data.message = 'pisze';
+    addChatMessage(data);
+  }
+
+  // Usuwanie wiadmości "pisze"
+  const removeChatTyping = (data) => {
+    getTypingMessages(data).fadeOut(function () {
+      $(this).remove();
+    });
+  }
+
+  // Dodawanie wiadomości na strone
+  const addMessageElement = (el, options) => {
+    const $el = $(el);
+    if (!options) {
+      options = {};
+    }
+    if (typeof options.prepend === 'undefined') {
+      options.prepend = false;
+    }
+    if (options.prepend) {
+      $messages.prepend($el);
+    } else {
+      $messages.append($el);
+    }
+
+    $messages[0].scrollTop = $messages[0].scrollHeight;
+  }
+
+
+  // Ustawienie wiadmości "pisze"
+  const updateTyping = () => {
+    if (connected) {
+      if (!typing) {
+        typing = true;
+        socket.emit('typing');
+      }
+    }
+  }
+
+  // Pobranie nazwy użytkownika który aktualnie pisze
+  const getTypingMessages = (data) => {
+    return $('.typing.message').filter(function (i) {
+      return $(this).data('username') === data.username;
+    });
+  }
+
+  $window.keydown(event => {
+
+    // Wysyłąnie przy pomocy entera
+    if (event.which === 13) {
+      if (username) {
+        sendMessage();
+        socket.emit('endTyping');
+        typing = false;
+      } else {
+        setUsername();
+      }
+    }
+  });
+
+  $inputMessage.on('input', () => {
+    updateTyping();
+  });
+
+
+  // Wywołania odpowiednich fukcji socketa
+  socket.on('login', (data) => {
+    connected = true;
+  });
+
+  socket.on('message', (data) => {
+    addChatMessage(data);
+  });
+
+  socket.on('typing', (data) => {
+    addChatTyping(data);
+  });
+
+  socket.on('endTyping', (data) => {
+    removeChatTyping(data);
+  });
+
+});
+
+```
+
+***index.html*** - *plik zawierający strone internetową panel podawania nazwy użytkownika i panel z czatem (div'y)*
+ - Dodatkowo plik style.css - *ostylowanie strony*
+*kod z poradnika - z własnymi zmianami*
+```html
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>Czat Socket.io</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <ul class="pages">
+      <li class="login page">
+        <div class="form">
+          <h3 class="title">Podaj swoją nazwę</h3>
+          <input class="usernameInput" type="text"/>
+        </div>
+      </li>
+      <li class="chat page">
+        <div class="chatArea">
+          <ul class="messages"></ul>
+        </div>
+        <span class="berforeInputMessage">><input class="inputMessage"/></span>
+      </li>
+    </ul>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/main.js"></script>
+  </body>
+</html>
+```
+
+
+#### Podgląd działania aplikacji 'chat-socket-io'
+
+Dwie instancje - *podawanie nazw użytkowników*
+
+![io1](https://i.imgur.com/VkEPMoq.png)
+
+Dołączenie do pokoju i wysłanie wiadomości
+
+![io2](https://i.imgur.com/ariGl44.png)
+
+Dołączenie drugiego klienta gdzie widac poprzednie wiadomości oraz to że pierwszt klienta aktualnie pisze
+
+![io3](https://i.imgur.com/PrhbR2w.png)
+
+Drugi klient również zaczyna pisać
+
+![io4](https://i.imgur.com/QdvhLPr.png)
+
+Obaj klienci wysłali swoje wiadomości
+
+![io5](https://i.imgur.com/AQ99U18.png)
