@@ -158,3 +158,72 @@ def room(request, room_name):
 #### Podgląd działania aplikacji 'chat'
 ![chat1](https://i.imgur.com/tpKCsRE.png)
 ![chat2](https://i.imgur.com/Q2QqdcU.png)
+
+### Praca z Web Worker’ami
+
+#### Kod aplikacji 'workers'
+
+```py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'workers', # <- dodanie aplikacji do projektu
+    'chat', 
+]
+
+```
+
+Przygotowane workery:   
+  - workers/templates/fib.html - *szablon strony z worker'em odpowiedzialnym za ciąg Fibonacciego*
+  - workers/templates/fac.html - *szablon strony z worker'em odpowiedzialnym za wyliczanie silni*
+  - workers/templates/pow.html - *szablon strony z worker'em odpowiedzialnym za obliczanie potęgi liczby 2*
+
+Mechanizm działania
+tworzymy obiekt worker klasy Worker który jako parametr przyjmuje plik .js
+```js
+var worker = new Worker('worker.js');
+```
+jednak w naszym przypadku musimy dostarczyć plik w formacie DataURL (wzaszadzie scieszka)
+dostarczamy ją za pomocą obiektem blob klasy Blob
+```js
+var blob = new Blob([document.querySelector('#<tutaj_id_elementu>').textContent]);
+blobURL = window.URL.createObjectURL(blob);
+```
+
+#### Konfiguracja aplikacji 'workers'
+
+***apps.py***
+```py
+class WorkersConfig(AppConfig):
+    name = 'workers'
+```
+
+***urls.py***
+```py
+urlpatterns = [
+    path('1/', views.fib, name='fibonaci'),
+    path('2/', views.pow, name='power'),
+    path('3/', views.fac, name='factional'),
+]
+```
+
+***views.py***
+```py
+def fib(request):
+    return render(request, 'fib.html')
+
+def fac(request):
+    return render(request, 'fac.html')
+
+def pow(request):
+    return render(request, 'pow.html')
+```
+
+#### Podgląd działania aplikacji 'workers'
+![workers1](https://i.imgur.com/3WUvXLm.png)
+![workers2](https://i.imgur.com/g4rFNwd.png)
+![workers3](https://i.imgur.com/bojc5bP.png)
