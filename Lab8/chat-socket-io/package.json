@@ -1,0 +1,9 @@
+{
+    "name": "chat-socket-io",
+    "version": "1.0.0",
+    "description": "Patryk Morawski - Czat",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^3.1.0"
+    }
+}
